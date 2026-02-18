@@ -12,7 +12,7 @@ class Main {
 
     public static void main(String[] args) {
 
-        //ERRORO1-J
+        //ERRO1-J
         // Check argument
         if (args.length == 0) {
             System.out.println("Invalid file.");
@@ -22,7 +22,7 @@ class Main {
         // but it is not checking for it
         Pattern filePattern = Pattern.compile("[*?|<>/:\\\\]");
         String filename = Normalizer.normalize(args[0], Normalizer.Form.NFKC);
-        Matcher fileBlacklist = filePattern.matcher(args[0]);
+        Matcher fileBlacklist = filePattern.matcher(filename);
 
 
         if (fileBlacklist.find()) {
@@ -35,7 +35,7 @@ class Main {
             File baseDir = new File("C:\\homepath").getCanonicalFile();
 
             // Build requested file path
-            File requestedFile = new File(baseDir, args[0]).getCanonicalFile();
+            File requestedFile = new File(baseDir, filename).getCanonicalFile();
 
             // Ensure file stays inside allowed directory
             if (!requestedFile.getPath().startsWith(baseDir.getPath())) {
